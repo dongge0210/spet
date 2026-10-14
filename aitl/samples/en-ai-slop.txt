@@ -1,0 +1,6 @@
+# expect: AI 味明显
+# register: blog / 营销体
+# context: 英文 slop 样板——"not just X but Y" + "it's worth noting" + "let's dive in" + "in today's…" + 一级 slop 词
+# source: 人造
+---
+In today's fast-paced world, it's worth noting that this isn't just a tool — it's a paradigm shift. Let's dive in to explore the multifaceted landscape of AI capabilities. Moreover, it provides a robust and comprehensive approach. In conclusion, hope this helps.

@@ -1,65 +1,44 @@
-# aitl — AI 味检测与改写
+# aitl — 别说 AI 腔
 
-中英文"AI 味"(AI 写作特征)检测 + 改写。**两种用法共用同一份检测逻辑 `scripts/detect.py`**,不会漂移。
+给**你自己**的规矩:你写的东西不要长成 AI 的样子。
+这不是给用户跑的检测器,是让 AI 自己学会"人该咋么说话"。
 
-## 目录
+## 别这么写
 
-```
-aitl/
-├── SKILL.md            Claude Code skill 定义(何时用 / 工作流 / 评分档 / 改写原则)
-├── references/         词表与对照例:markers-zh、markers-en、structure-and-tells、examples
-├── scripts/detect.py   检测逻辑(纯标准库 Python,唯一真源)
-└── mcp/server.py       本地 stdio MCP(import detect.py,暴露 2 个工具)
-```
+- 废话开场:值得注意的是 / 众所周知 / 毋庸置疑 / 归根结底
+- 递进套路:不只是…更是… / 既是…也是…更是… / 不是…而是…
+- 三段式:首先…其次…最后 / 综上所述 / 总而言之
+- 套话:双刃剑 / 当务之急 / 值得我们深入思考 / 在当今…时代·浪潮
+- 破折号成堆、异常 emoji(绿框对勾 / 大脑 / 蓝色菱形)
+- 英文:delve / utilize / leverage / it's worth noting / let's dive in / not just X but Y
+- 软化剂连用:可能…在一定程度上…似乎
 
-## 用法一:作为 Claude Code skill
+完整词表见 `references/`。
 
-```bash
-cp -R aitl ~/.claude/skills/
-```
+## 这么写
 
-然后在对话里说:**"这段像不像 AI 写的" / "帮我去了 AI 味" / "humanize 这段" / "检测 AI 痕迹"**。
+`references/examples.md` 和 `samples/` 里是**成对的"AI 味 vs 人味"**,照着学:
 
-## 用法二:作为本地 MCP 工具
+- 有具体的人、数字、时间、一次性的经历——**细节是解药**
+- 句子长短不齐
+- 中文带语气词(啊 / 吧 / 嘛 / 呗),该省略就省略
+- 说就说死,不说就不说
+- 主动语态,主语补上
 
-1. 注册(需要 `uv`):
+## 怎么用
 
-```bash
-claude mcp add aitl --scope user -- uv run --with mcp python ~/.claude/skills/aitl/mcp/server.py
-```
+- 你自己写任何东西(回复 / 文档 / 注释 / commit message)**默认按上面自查一遍,静默**。
+- 不报分、不念过程、不做"我记住了"这类表态。交付的就是**话本身**。
+- 拿不准就**直接问**"咋么回事",别用套话糊过去。
+- 碰到新的真实例子,自己丢进 `samples/`——算长记性。
 
-2. 重启 Claude Code(或 `/mcp` 重连),之后任意项目可调:
+## 跑
 
-| 工具 | 返回 |
-|---|---|
-| `analyze_text(text)` | 完整 JSON:score / band / em_dash / colon / hedge / negative_parallelism / triad / time_opener / ai_emoji / sentence_cv / 命中词表 |
-| `score_text(text)` | 一行,如 `66/100  AI 味明显` |
+- 自检(可选):`python3 scripts/detect.py <file>`
+- 样本回归:`python3 scripts/test_samples.py`
+- MCP 工具:`analyze_text` / `score_text`(见 `mcp/server.py`)
 
-> 检测器默认路径 `~/.claude/skills/aitl/scripts/detect.py`,可用环境变量 `AITL_DETECT_PY` 覆盖。
+## 说明
 
-## 用法三:命令行直接跑
-
-```bash
-python3 scripts/detect.py 文件.txt
-python3 scripts/detect.py --json 文件.txt
-cat 文件.txt | python3 scripts/detect.py
-```
-
-## 评分档
-
-| 分数 | 判定 |
-|---|---|
-| 0–12 | 人类 |
-| 13–32 | 基本人味(可能轻度润色) |
-| 33–55 | 可疑 / AI 辅助 |
-| 56–80 | AI 味明显 |
-| 81–100 | 纯 AI slop |
-
-## 依赖
-
-- 脚本:`python3`(无第三方依赖)
-- MCP:`uv`(用 `uv run --with mcp` 起临时环境,不污染系统 Python)
-
-## 重要说明
-
-输出是**量化底座,不是判定结论**。判据是**多种特征在短篇幅里扎堆**,单项(破折号 / 某个 emoji / 某个词)一律不可靠。技术笔记、公文、非母语写作与短样本会被误报——结论里必须点明这点。
+单项特征不可靠,看**密度与组合**;技术笔记 / 公文 / 非母语写作会误报。
+`samples/` 里的检测文本会带字面 emoji(那是证据),其余地方不写 emoji。

@@ -1,0 +1,6 @@
+# expect: 人类
+# register: 口语 / 工程随笔
+# context: 英文"人味"锚点——短句、有具体动作("port wrong""went home"),没有一处 slop 套话
+# source: 人造
+---
+I spent two days debugging this. Turned out I had the port wrong. Fixed it, shipped it, went home.

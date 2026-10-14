@@ -82,14 +82,14 @@ From the Washington Post analysis of **328,744** GPT-4o messages (2024-05 → 20
 
 | Emoji | Meaning | AI vs human rate |
 |---|---|---|
-| ✅ | white check mark in green box | **11×** |
-| 🧠 | brain | ~10× |
-| 🔷 | small blue diamond | ~10× |
+| 绿框白对勾 | white check mark in green box | **11×** |
+| 大脑 | brain | ~10× |
+| 蓝色小菱形 | small blue diamond | ~10× |
 
 - By July 2025, **70%** of messages contained ≥1 emoji.
 - ≥1/4 of 2025 replies carried a brain or check emoji.
 
-Humans lean ❤️😂👍👀; **AI leans ✅🧠🔷** — the "calm functional" emoji. That contrast is the signal, not "uses emoji at all."
+Humans lean heart / laughing-crying / thumbs-up / eyes; **AI leans check-in-green-box / brain / blue diamond** — the "calm functional" emoji. That contrast is the signal, not "uses emoji at all."
 
 ## Punctuation & typography
 
